@@ -13,7 +13,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     // Sending our request using the Fetch API
     const createChatCompletionRes = await anthropic.messages.create({
       model: "claude-3-opus-20240229",
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [
         {
           role: "user",
