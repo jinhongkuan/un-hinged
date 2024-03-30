@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         onChange={handleInputChange}
         placeholder="Enter text here"
       />
-      <button onClick={handleButtonClick}>Copy Text</button>
+      <button onClick={handleButtonClick}>Submit</button>
       <textarea
         value={outputValue}
         readOnly
