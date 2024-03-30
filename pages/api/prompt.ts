@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Anthropic from "@anthropic-ai/sdk";
+import { GetPromptFromTone } from "../lib/prompts";
 export const dynamic = "force-dynamic";
-
-console.log(process.env.ANTHROPIC_API_KEY);
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -14,8 +13,13 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
     // Sending our request using the Fetch API
     const createChatCompletionRes = await anthropic.messages.create({
       model: "claude-3-opus-20240229",
-      max_tokens: 1024,
-      messages: [{ role: "user", content: req.body.promptText }],
+      max_tokens: 2048,
+      messages: [
+        {
+          role: "user",
+          content: GetPromptFromTone(req.body.tone, req.body.promptText),
+        },
+      ],
     });
     // Sending a successful response for our endpoint
     res

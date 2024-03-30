@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
+import resume from "./mock/resume.json";
 
 const Home: NextPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -17,7 +18,10 @@ const Home: NextPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ promptText: inputValue }),
+          body: JSON.stringify({
+            promptText: resume.promptText,
+            tone: resume.tone,
+          }),
         });
 
         if (!response.ok) {
